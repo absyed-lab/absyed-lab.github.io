@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Syed Abdul Basit</title>
+<meta name="description" content="Syed Abdul Basit: research on LLM agents, multi-agent systems and how to verify AI systems that keep learning after deployment. M.Sc. AI Engineering, Okan University. Applying to PhD programs for Fall 2027.">
+<meta property="og:title" content="Syed Abdul Basit">
+<meta property="og:description" content="LLM agents, multi-agent systems, and verifying AI systems that keep learning after deployment.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F6F7F5;
+  --ink: #182027;
+  --slate: #59646D;
+  --rule: #D4D9D5;
+  --accent: #1E5C74;
+  --reject: #A86A16;
+  --diagram-fill: #FFFFFF;
+  --serif: "Literata", Georgia, serif;
+  --sans: "Instrument Sans", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12171B;
+    --ink: #E2E6E3;
+    --slate: #9AA5AD;
+    --rule: #2C353B;
+    --accent: #7FB7CC;
+    --reject: #D9A24E;
+    --diagram-fill: #182026;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #12171B;
+  --ink: #E2E6E3;
+  --slate: #9AA5AD;
+  --rule: #2C353B;
+  --accent: #7FB7CC;
+  --reject: #D9A24E;
+  --diagram-fill: #182026;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  font-optical-sizing: auto;
+}
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.page {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 4.5rem 1.5rem 5rem;
+}
+
+/* Hero */
+.hero { max-width: 44rem; margin-left: 11rem; }
+.name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.25rem;
+}
+.role {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  color: var(--slate);
+  margin: 0 0 2.75rem;
+  line-height: 1.5;
+}
+.question {
+  font-weight: 500;
+  font-size: clamp(2rem, 4.6vw, 3.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0 0 1.5rem;
+  text-wrap: balance;
+}
+.lede { font-size: 1.1875rem; line-height: 1.6; margin: 0 0 1.25rem; max-width: 38rem; }
+.status { font-family: var(--sans); font-size: 0.9375rem; color: var(--slate); margin: 0 0 2.5rem; }
+
+figure.loop { margin: 0 0 1rem; max-width: 40rem; }
+figure.loop svg { display: block; width: 100%; height: auto; }
+figure.loop svg.narrow { display: none; max-width: 320px; }
+@media (max-width: 560px) {
+  figure.loop svg.wide { display: none; }
+  figure.loop svg.narrow { display: block; }
+}
+figure.loop figcaption { font-family: var(--sans); font-size: 0.8125rem; color: var(--slate); margin-top: 0.5rem; }
+.loop .box { fill: var(--diagram-fill); stroke: var(--ink); stroke-width: 1.25; }
+.loop .verifier { stroke: var(--accent); stroke-width: 2; }
+.loop .label { font-family: var(--sans); font-size: 14px; fill: var(--ink); }
+.loop .small { font-family: var(--sans); font-size: 12px; fill: var(--slate); }
+.loop .flow { stroke: var(--ink); stroke-width: 1.25; fill: none; }
+.loop .ok { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+.loop .no { stroke: var(--reject); stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; }
+.loop .ok-text { fill: var(--accent); }
+.loop .no-text { fill: var(--reject); }
+
+.links { font-family: var(--sans); font-size: 0.9375rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 2.5rem 0 0; padding: 0; list-style: none; }
+
+/* Sections with margin-note headings */
+section {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 44rem);
+  column-gap: 2rem;
+  border-top: 1px solid var(--rule);
+  padding: 2.25rem 0 0.75rem;
+  margin-top: 2.5rem;
+}
+section > h2 {
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--slate);
+  margin: 0.2rem 0 0;
+  line-height: 1.4;
+}
+section > .body > :first-child { margin-top: 0; }
+p { margin: 0 0 1rem; }
+
+.entry { margin: 0 0 1.75rem; }
+.entry:last-child { margin-bottom: 0.5rem; }
+.entry h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 0.3rem;
+}
+.meta { font-family: var(--sans); font-size: 0.875rem; color: var(--slate); line-height: 1.5; margin: 0 0 0.5rem; }
+.entry p { margin-bottom: 0.5rem; }
+.note { font-family: var(--sans); font-size: 0.875rem; color: var(--slate); }
+
+ul.plain { margin: 0 0 1rem; padding-left: 1.1rem; }
+ul.plain li { margin-bottom: 0.35rem; }
+
+.thesis-title { font-size: 1.375rem; font-weight: 500; line-height: 1.35; margin: 0 0 0.5rem; }
+
+footer { font-family: var(--sans); font-size: 0.8125rem; color: var(--slate); margin: 4rem 0 0 11rem; }
+
+@media (max-width: 760px) {
+  .page { padding: 2.5rem 1rem 3.5rem; }
+  .hero { margin-left: 0; }
+  .role { margin-bottom: 2rem; }
+  section { grid-template-columns: minmax(0, 1fr); padding-top: 1.75rem; margin-top: 2rem; }
+  section > h2 { margin: 0 0 0.9rem; color: var(--ink); font-size: 1rem; }
+  footer { margin-left: 0; }
+}
+@media print {
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .page { padding: 0; }
+  a { color: #000; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <p class="name">Syed Abdul Basit</p>
+    <p class="role">M.Sc. AI Engineering (thesis track), Okan University, Istanbul<br>Senior Machine Learning Engineer, Applied AI</p>
+
+    <h1 class="question">When an AI system keeps learning after it is deployed, how do we check that it is still right?</h1>
+
+    <p class="lede">I study LLM agents and multi-agent systems, and in particular how to verify them. My M.Sc. thesis uses LLMs as verification agents for systems that keep learning after deployment. At work I build the same kind of checks for production LLM pipelines.</p>
+
+    <p class="status">Applying to PhD programs in the United States for Fall 2027.</p>
+
+    <figure class="loop">
+      <svg class="wide" viewBox="0 0 640 230" role="img" aria-labelledby="loop-title loop-desc">
+        <title id="loop-title">The setting my thesis studies</title>
+        <desc id="loop-desc">A deployed system learns from new data and proposes an update. An LLM verification agent checks the update. Accepted updates are deployed. Rejected updates go back to the learner with the reason.</desc>
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill: var(--ink)"/></marker>
+          <marker id="arrow-ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill: var(--accent)"/></marker>
+          <marker id="arrow-no" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill: var(--reject)"/></marker>
+        </defs>
+
+        <rect class="box" x="10" y="60" width="150" height="64" rx="6"/>
+        <text class="label" x="85" y="88" text-anchor="middle">Deployed system</text>
+        <text class="small" x="85" y="108" text-anchor="middle">learns from new data</text>
+
+        <path class="flow" d="M160 92 H236" marker-end="url(#arrow)"/>
+        <text class="small" x="198" y="82" text-anchor="middle">update</text>
+
+        <rect class="box verifier" x="240" y="52" width="160" height="80" rx="6"/>
+        <text class="label" x="320" y="86" text-anchor="middle">LLM verification</text>
+        <text class="label" x="320" y="104" text-anchor="middle">agent</text>
+
+        <path class="ok" d="M400 92 H496" marker-end="url(#arrow-ok)"/>
+        <text class="small ok-text" x="448" y="82" text-anchor="middle">accept</text>
+
+        <rect class="box" x="500" y="60" width="130" height="64" rx="6"/>
+        <text class="label" x="565" y="88" text-anchor="middle">Ship update</text>
+        <text class="small" x="565" y="108" text-anchor="middle">keep monitoring</text>
+
+        <path class="no" d="M320 132 V190 H85 V128" marker-end="url(#arrow-no)"/>
+        <text class="small no-text" x="202" y="208" text-anchor="middle">reject, with the reason</text>
+      </svg>
+      <svg class="narrow" viewBox="0 0 320 380" role="img" aria-labelledby="loop-title-n">
+        <title id="loop-title-n">The setting my thesis studies</title>
+        <defs>
+          <marker id="arrow-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill: var(--ink)"/></marker>
+          <marker id="arrow-ok-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill: var(--accent)"/></marker>
+          <marker id="arrow-no-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill: var(--reject)"/></marker>
+        </defs>
+        <rect class="box" x="60" y="6" width="200" height="60" rx="6"/>
+        <text class="label" x="160" y="32" text-anchor="middle">Deployed system</text>
+        <text class="small" x="160" y="52" text-anchor="middle">learns from new data</text>
+
+        <path class="flow" d="M160 66 V128" marker-end="url(#arrow-n)"/>
+        <text class="small" x="170" y="102">update</text>
+
+        <rect class="box verifier" x="60" y="132" width="200" height="66" rx="6"/>
+        <text class="label" x="160" y="170" text-anchor="middle">LLM verification agent</text>
+
+        <path class="ok" d="M160 198 V286" marker-end="url(#arrow-ok-n)"/>
+        <text class="small ok-text" x="170" y="246">accept</text>
+
+        <rect class="box" x="60" y="290" width="200" height="60" rx="6"/>
+        <text class="label" x="160" y="316" text-anchor="middle">Ship update</text>
+        <text class="small" x="160" y="336" text-anchor="middle">keep monitoring</text>
+
+        <path class="no" d="M60 165 H34 V36 H56" marker-end="url(#arrow-no-n)"/>
+        <text class="small no-text" x="18" y="100" transform="rotate(-90 18 100)" text-anchor="middle">reject, with the reason</text>
+      </svg>
+      <figcaption>The setting my thesis studies.</figcaption>
+    </figure>
+
+    <ul class="links">
+      <li><a href="mailto:basit121987@outlook.com">basit121987@outlook.com</a></li>
+      <li><a href="https://github.com/absyed-lab">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/syedabdulbasit">LinkedIn</a></li>
+    </ul>
+  </header>
+
+  <section id="research" aria-labelledby="h-research">
+    <h2 id="h-research">Research interests</h2>
+    <div class="body">
+      <p>LLM agents and multi-agent systems: how agents are orchestrated, how they coordinate, and how they use tools.</p>
+      <p>Verifying and evaluating agents. Using LLMs as judges and verifiers, deciding when their verdicts can be trusted, and catching regressions before users do.</p>
+      <p>Agents that keep learning after deployment, and what stops them from quietly getting worse.</p>
+      <p>Healthcare as an application area. I spent four and a half years building ML and data systems in a hospital, and clinical settings are where unverified model updates cost the most.</p>
+    </div>
+  </section>
+
+  <section id="thesis" aria-labelledby="h-thesis">
+    <h2 id="h-thesis">M.Sc. thesis</h2>
+    <div class="body">
+      <p class="thesis-title">Using LLMs as verification agents for continuous learning systems</p>
+      <p class="meta">Okan University, M.Sc. AI Engineering. Supervisor: Sina Alp. In progress.</p>
+      <p>The thesis looks at LLM agents that learn after deployment and uses LLMs as verification agents that check what those systems learn.</p>
+    </div>
+  </section>
+
+  <section id="publications" aria-labelledby="h-pubs">
+    <h2 id="h-pubs">Publications</h2>
+    <div class="body">
+      <div class="entry">
+        <h3>Bidirectional Cross-Modal Attention for Multimodal Disease Prediction</h3>
+        <p class="meta">IEEE ASYU 2026, Istanbul. Accepted for oral presentation. First author. Supervised by Sina Alp.</p>
+        <p>Predicts disease from free-text symptom descriptions and vital signs together, with attention running in both directions between the two inputs. Experiments use synthetic patient data.</p>
+        <p class="note"><a href="https://github.com/absyed-lab/multimodal-disease-prediction">Code</a></p>
+      </div>
+      <div class="entry">
+        <h3>PhyS2S-GNN</h3>
+        <p class="meta">IEEE ASYU 2026, Istanbul. Accepted for oral presentation. First author, with Ahmed Anas. Supervised by Mahsa Mikaeili.</p>
+        <p>A physics-informed graph neural network for predicting compound extreme weather events. Experiments use synthetic data.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="h-projects">
+    <h2 id="h-projects">Research code</h2>
+    <div class="body">
+      <div class="entry">
+        <h3><a href="https://github.com/absyed-lab/token-efficient-self-improving-agent">Token-efficient self-improving coding agent</a></h3>
+        <p class="meta">LangGraph, local Ollama models, PostgreSQL. Work in progress.</p>
+        <p>A coding agent that retries its own solution, and an LLM judge that decides when another attempt is no longer worth the tokens. The question: can a cheap judge stop the loop early while keeping most of the pass rate of a full loop? The open problem is checking whether the judge's stop decisions are right. Results are not published yet.</p>
+      </div>
+      <div class="entry">
+        <h3><a href="https://github.com/absyed-lab/agent-memory-os">Agent Memory OS</a></h3>
+        <p class="meta">ChromaDB, Groq or Ollama, Streamlit.</p>
+        <p>A support agent with four memory layers: short-term, long-term, episodic and reflection. An experiment in what an agent should carry from one session to the next. No systematic evaluation yet.</p>
+      </div>
+      <div class="entry">
+        <h3><a href="https://github.com/absyed-lab/multimodal-disease-prediction">Multimodal disease prediction</a></h3>
+        <p class="meta">PyTorch, BioClinicalBERT.</p>
+        <p>Code behind the cross-modal attention paper: the model, three baselines, Monte Carlo dropout for uncertainty, and attention and SHAP explanations. Trained and tested on synthetic data.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="h-experience">
+    <h2 id="h-experience">Experience</h2>
+    <div class="body">
+      <div class="entry">
+        <h3>Senior Machine Learning Engineer, Applied AI</h3>
+        <p class="meta">Istanbul, March 2025 to present</p>
+        <ul class="plain">
+          <li>Built a LangGraph multi-agent pipeline (Extractor, Validator, Router) that processes more than 10,000 documents a month.</li>
+          <li>Built a monitoring framework that runs RAGAS and LLM-as-judge checks in CI/CD.</li>
+          <li>Used LLM feature extraction to feed an XGBoost fraud-pattern classifier.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <h3>Machine Learning and Data Engineer, Aga Khan University Hospital</h3>
+        <p class="meta">Karachi, September 2020 to March 2025</p>
+        <ul class="plain">
+          <li>Built Spark and Azure data pipelines.</li>
+          <li>Built a clinical triage classifier fine-tuned with LoRA.</li>
+          <li>Managed a team of four.</li>
+        </ul>
+      </div>
+      <p class="note">Code written for employers belongs to them and is not public.</p>
+    </div>
+  </section>
+
+  <section id="open-source" aria-labelledby="h-oss">
+    <h2 id="h-oss">Open source</h2>
+    <div class="body">
+      <div class="entry">
+        <h3><a href="https://github.com/sunlabuiuc/PyHealth/pull/1324">PyHealth pull request #1324</a></h3>
+        <p class="meta">sunlabuiuc/PyHealth. Open, under review.</p>
+        <p>Fixes the documentation and shape check of <code>regression_metrics_fn</code>, returns plain Python floats, and adds 12 tests, including one that runs <code>Trainer.evaluate</code> on a regression model.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" aria-labelledby="h-education">
+    <h2 id="h-education">Education</h2>
+    <div class="body">
+      <div class="entry">
+        <h3>M.Sc. AI Engineering (thesis track)</h3>
+        <p class="meta">Okan University, Istanbul. 2025 to present. Taught in English.</p>
+      </div>
+      <div class="entry">
+        <h3>B.E. Mechatronics</h3>
+        <p class="meta">SZABIST, Karachi. 2014 to 2020.</p>
+      </div>
+      <p class="note">Certifications: Claude Certified Architect – Foundations; AI Fluency (Anthropic Academy).</p>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="h-contact">
+    <h2 id="h-contact">Contact</h2>
+    <div class="body">
+      <p>If you supervise PhD students in LLM agents, agent evaluation or clinical AI and are recruiting for Fall 2027, I would be glad to hear from you: <a href="mailto:basit121987@outlook.com">basit121987@outlook.com</a>.</p>
+      <p class="note">Based in Istanbul. Languages: English, German, Urdu, and conversational Turkish.</p>
+    </div>
+  </section>
+
+  <footer>Last updated October 2026.</footer>
+</main>
+</body>
+</html>
