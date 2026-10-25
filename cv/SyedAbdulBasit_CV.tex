@@ -1,0 +1,124 @@
+% CV of Syed Abdul Basit. Compiled to SyedAbdulBasit_CV.pdf by .github/workflows/cv.yml
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}
+\usepackage[margin=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\titleformat{\section}{\bfseries\scshape\large}{}{0pt}{}[\vspace{-7pt}\rule{\linewidth}{0.4pt}]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+
+\setlist[itemize]{leftmargin=1.1em,itemsep=1pt,topsep=1pt,parsep=0pt,label=--}
+
+\newcommand{\entry}[4]{
+  \textbf{#1}\hfill #2\\
+  #3\hfill #4\par\vspace{1pt}}
+
+\newcommand{\pub}[4]{
+  \begin{tabularx}{\linewidth}{@{}p{2em}X@{}}
+  #1 & #2. ``#3.'' #4
+  \end{tabularx}\par\vspace{2pt}}
+
+\begin{document}
+
+\begin{center}
+  {\Large\bfseries Syed Abdul Basit}\\[3pt]
+  Istanbul, Turkey \;\textbullet\; +90 537 420 8092 \;\textbullet\;
+  \href{mailto:basit121987@outlook.com}{basit121987@outlook.com}\\[1pt]
+  \href{https://github.com/absyed-lab}{github.com/absyed-lab} \;\textbullet\;
+  \href{https://absyed-lab.github.io}{absyed-lab.github.io} \;\textbullet\;
+  \href{https://linkedin.com/in/syedabdulbasit}{linkedin.com/in/syedabdulbasit}
+\end{center}
+
+\section{Research Interests}
+LLMs as verification agents for continual-learning systems; self-improving and multi-agent LLM systems;
+LLM-as-judge evaluation and calibration against human labels; clinical AI.
+
+\section{Education}
+\entry{M.Sc.\ in Artificial Intelligence Engineering, Thesis Track}{Jul.\ 2025 -- Expected 2027}
+      {Okan University (English-medium)}{Istanbul, Turkey}
+\begin{itemize}
+  \item GPA 3.43/4.00. Coursework (AA): Machine Learning, Deep Learning, Design of AI Systems, Introduction to AI Engineering.
+  \item Thesis (approved): ``Using LLMs as Verification Agents for Continuous Learning Systems.'' Supervisor: Sina Alp.
+\end{itemize}
+\vspace{2pt}
+\entry{B.E.\ in Mechatronics Engineering}{Aug.\ 2014 -- Feb.\ 2020}
+      {Shaheed Zulfikar Ali Bhutto Institute of Science and Technology (SZABIST)}{Karachi, Pakistan}
+\begin{itemize}
+  \item Best Innovative Design Award.
+\end{itemize}
+
+\section{Publications}
+\textit{Peer-reviewed conference papers} \hfill \textit{(* = oral presentation)}\par\vspace{2pt}
+\pub{[C2]}{\textbf{Syed Abdul Basit}, Ahmed Anas}
+    {PhyS2S-GNN: A Physics-Informed Dynamic Graph Neural Network for Compound Extreme Weather Event Prediction at Sub-Seasonal Timescales}
+    {\textit{IEEE Innovations in Intelligent Systems and Applications Conference (ASYU)}, 2026. Accepted, to appear in IEEE Xplore.*}
+\pub{[C1]}{\textbf{Syed Abdul Basit}}
+    {Bidirectional Cross-Modal Attention for Multimodal Disease Prediction: Fusing Clinical Narratives with Vital Signs}
+    {\textit{IEEE Innovations in Intelligent Systems and Applications Conference (ASYU)}, 2026. Accepted, to appear in IEEE Xplore.*}
+
+\section{Research Experience}
+\entry{Graduate Researcher, Physics-Informed Graph Learning}{2026}
+      {Okan University; supervisor: Prof.\ Mahsa Mikaeili}{Istanbul, Turkey}
+\begin{itemize}
+  \item 14-day prediction of compound heatwave--drought events. Designed PhyS2S-GNN (dual-LSTM encoder, dynamic graph attention
+        over a 48-node graph, physics-informed loss, dual decoder) and compared it with LSTM, GCN and GAT baselines [C2].
+\end{itemize}
+\vspace{2pt}
+\entry{Graduate Researcher, Multimodal Clinical Prediction}{2026}
+      {Okan University; supervisor: Sina Alp}{Istanbul, Turkey}
+\begin{itemize}
+  \item Disease prediction from symptom narratives and vital signs. Designed a bidirectional cross-modal attention model
+        (BioClinicalBERT, TabNet-style encoder) and compared it with single-modality, concatenation and unidirectional baselines [C1].
+\end{itemize}
+
+\section{Applied ML Research in Industry}
+\entry{Senior Machine Learning Engineer}{Mar.\ 2025 -- Present}
+      {Applied AI}{Istanbul, Turkey}
+\begin{itemize}
+  \item \textit{LLM multi-agent system.} Designed a three-agent LangGraph pipeline (Extractor $\rightarrow$ Validator $\rightarrow$ Router)
+        with a dedicated validation stage between agents and escalation to human reviewers; runs on 10K+ documents per month.
+  \item \textit{Evaluating LLM outputs.} Built an evaluation protocol combining RAGAS metrics, LLM-as-judge scoring and a 200-item
+        golden set, run as a regression test on every release; detected 3 critical regressions across 14 releases.
+  \item \textit{LLM feature extraction.} Used an LLM to turn unstructured complaint text into structured features for a
+        gradient-boosted classifier (4 classes, 12K labelled records): AUC-ROC 0.94, macro-F1 0.89 on a held-out 20\% split.
+\end{itemize}
+\vspace{2pt}
+\entry{ML \& Data Scientist}{Sep.\ 2020 -- Mar.\ 2025}
+      {Aga Khan University Hospital (AKUH)}{Karachi, Pakistan}
+\begin{itemize}
+  \item \textit{Clinical text classification.} Diagnosed why a first triage classifier reached only 71\% F1 (class imbalance,
+        domain mismatch), then rebuilt it with balanced sampling, domain-specific tokenisation and LoRA fine-tuning:
+        91\% macro-F1 on 8K held-out records vs.\ 67\% for zero-shot GPT-3.5. Deployed with the clinical team.
+  \item \textit{Clinical data quality.} Designed automated schema validation and drift detection for 50K+ daily records across a
+        multi-country hospital network (Spark, Azure Data Factory), reducing downstream error rate from 40\% to under 4\%.
+  \item Supervised a team of 4 and mentored junior data scientists.
+\end{itemize}
+
+\section{Open Source and Projects}
+\begin{itemize}
+  \item \textit{PyHealth (open-source healthcare AI library, UIUC).} Pull request \href{https://github.com/sunlabuiuc/PyHealth/pull/1324}{\#1324}:
+        fixed the shape check and documentation of \texttt{regression\_metrics\_fn} and added 10 unit tests (2026).
+  \item \textit{Token-efficient self-improving coding agent} (\href{https://github.com/absyed-lab/token-efficient-self-improving-agent}{github.com/absyed-lab}).
+        LangGraph loop of coding, critic and LLM-as-judge agents; the judge decides when further self-improvement
+        attempts are no longer worth the tokens. Work in progress.
+\end{itemize}
+
+\section{Skills}
+\begin{tabularx}{\linewidth}{@{}p{3.3cm}X@{}}
+  \textbf{Machine learning} & PyTorch, PyTorch Geometric, Transformers, LoRA fine-tuning, scikit-learn, XGBoost \\
+  \textbf{LLM systems} & LangGraph multi-agent pipelines, LLM-as-judge evaluation, RAGAS \\
+  \textbf{Engineering} & Python, SQL, Spark, Docker, FastAPI, GitHub Actions, AWS, Azure, Git \\
+  \textbf{Certifications} & Claude Certified Architect -- Foundations; AI Fluency (Anthropic, 2025) \\
+  \textbf{Languages} & English (C2), German (C1), Urdu (native), Turkish (conversational) \\
+\end{tabularx}
+
+\end{document}
